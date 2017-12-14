@@ -3,7 +3,8 @@ $overWrite = array(
 		"name" => "terla",
 		"baseUrl" => "/ph/terla/",
         "assets" => array(
-            	'js/directory.js',),
+            	'js/default/directory.js',
+            	'js/co.js',),
         "views" => array(
         		"directoryjs" => "default/directoryjs"),
     );

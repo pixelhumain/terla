@@ -125,7 +125,6 @@ HtmlHelper::registerCssAndScriptsFiles( array('/css/default/directory.css', ) ,
 </style>
  
 <div class="container-result-search">
-afazdazazdzada
       <?php if(@$_GET['type']!="") {
         $typeSelected = $_GET['type'];
         if($typeSelected == "persons") $typeSelected = "citoyens" ;
@@ -319,21 +318,12 @@ afazdazazdzada
                         ));
         ?>
         <?php $col = 8; 
-          echo '<div>Ajout des services sur le circuit <span id="headerServices"></span></div>';
+          echo '<div>Ajout des services sur le circuit <span id="headerlist"></span></div>';
          ?>
         <div class="col-sm-<?php echo $col ?>" id="dropdown_search"></div>
       <?php } ?>
   </div>
 
-
-<?php //$this->renderPartial(@$path."first_step_directory"); ?> 
-<?php $city = (@$_GET['lockCityKey'] ? City::getByUnikey($_GET['lockCityKey']) : null);
-
-      if($city == null && @$_GET['insee'])
-        $city = City::getCityByInsee($_GET['insee']);
-      
-      $cityName = (($city!=null) ? $city["name"]. (@$city["cp"]? ", ".$city["cp"] : "") : "");
-?>
 
 <script type="text/javascript">
 
@@ -418,14 +408,17 @@ var allSearchType = [ "persons", "organizations", "projects", "events", "vote", 
 var personCOLLECTION = "<?php echo Person::COLLECTION ?>";
 var userId = '<?php echo isset( Yii::app()->session["userId"] ) ? Yii::app() -> session["userId"] : null; ?>';
 var lockCityKey = <?php echo (@$_GET['lockCityKey']) ? "'".$_GET['lockCityKey']."'" : "null" ?>;
-var cityNameLocked = "<?php echo $cityName; ?>";
 var typeSelected = <?php echo (@$_GET['type']) ? "'".$_GET['type']."'" : "null" ?>;
 
 var filliaireCategories = <?php echo json_encode($filliaireCategories); ?>;
 jQuery(document).ready(function() {
 
+	if(notNull(contextData)){
+		$("#headerlist").html(contextData.name);
+	}
   
   currentTypeSearchSend = "search";
+
 
 
   $("#btn-slidup-scopetags").click(function(){
@@ -450,13 +443,6 @@ jQuery(document).ready(function() {
 
   setHeaderDirectory(typeSelected);  
 
-  //showTagsScopesMin("#scopeListContainer");
-
-  // if(lockCityKey != null){
-  //   lockScopeOnCityKey(lockCityKey, cityNameLocked);
-  // }else{
-  //   rebuildSearchScopeInput();
-  // }
 
 
   <?php if(Yii::app()->params["CO2DomainName"] == "terla"){ ?>
