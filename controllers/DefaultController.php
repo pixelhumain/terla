@@ -21,10 +21,10 @@ class DefaultController extends CController {
 
 	public function actionIndex($src=null) 
 	{
-    	echo Yii::getPathOfAlias('application.modules.terla.assets');
-      echo "</br>";
-      echo Yii::getPathOfAlias('webroot');
-      echo "</br>";
-      echo Yii::app()->getModule('terla')->getAssetsUrl();
+    	// echo Yii::getPathOfAlias('application.modules.terla.assets');
+     //  echo "</br>";
+     //  echo Yii::getPathOfAlias('webroot');
+     //  echo "</br>";
+     //  echo Yii::app()->getModule('terla')->getAssetsUrl();
   }
 }
